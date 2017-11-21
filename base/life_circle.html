@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Life circle</title>
+</head>
+<body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+var app=new Vue({
+    data:{data:1},
+    created:function(){
+        console.log('i am created.and a='+this.data)
+    },
+    beforeCreate:function(){
+        console.log('i am beforeCreate.and a='+this.data)
+    }
+})
+</script>
+</body>
+</html>

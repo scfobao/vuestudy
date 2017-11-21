@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue components</title>
+</head>
+<body>
+
+<div id="app">
+    <ol>
+        <todo-item v-for="item in lqhList" v-bind:todo="item" v-bind:key="item.id">
+        </todo-item>
+    </ol>
+    <image-item v-for="img in lqhList" v-bind:myimage="img" v-bind:key="img.id"></image-item>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+
+    Vue.component('todo-item', {
+        props: ['todo'],
+        template: "<li>{{todo.text}}</li>"
+
+    })
+
+    Vue.component('image-item',{
+        props:['myimage'],
+        template:'<li><img :src="myimage.src" @click="test"></li>',
+        methods:{
+            test:function(e){
+                console.log(e)
+                console.log('what fuck'+e)
+            },
+            test1:function(){
+
+            }
+        }
+    })
+    var app = new Vue({
+        el: "#app",
+        data: {
+            lqhList: [
+                {id: 0, text: '苹果',src:'https://cn.vuejs.org/images/logo.png'},
+                {id: 1, text: '梨子',src:'https://cn.vuejs.org/images/logo.png'},
+                {id: 2, text: '香蕉',src:'https://cn.vuejs.org/images/logo.png'},
+                {id: 3, text: '杨桃',src:'https://cn.vuejs.org/images/logo.png'}
+            ]
+        }
+    })
+
+    app.$watch('lqhList', function (newValue, oldValue) {
+        // 这个回调将在 `vm.a` 改变后调用
+        console.log(newValue)
+    })
+
+
+    setTimeout(function () {
+    app.lqhList.push({id: 4, text: '菠萝',src:'https://cn.vuejs.org/images/logo.png'})
+    },3000)
+
+</script>
+</body>
+</html>

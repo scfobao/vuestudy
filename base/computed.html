@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed</title>
+</head>
+<body>
+<div id="app1">
+    <p>原始数据：{{message}}</p>
+    <p>翻转数据：{{reversedMessage}}</p>
+</div>
+
+<div id="app2">
+    <p>full name:{{fullname}}</p>
+</div>
+
+<div id="app3">
+    <p>full name:{{fullname}}</p>
+</div>
+
+<div id="app4">
+    <p>full name with app4:{{fullname}}</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+var app1=new Vue({
+    el:"#app1",
+    data:{
+        message:'我爱中国共产党'
+    },
+    computed:{
+        reversedMessage:function(){
+            return this.message.split('').reverse().join('')
+        }
+    }
+
+})
+
+var app2=new Vue({
+    el:"#app2",
+    data:{
+        firstname:'li',
+        lastname:'qinghua',
+        fullname:''
+    },
+    watch:{
+        firstname:function(val){
+            this.fullname=val+' '+ this.lastname
+        },
+        lastname:function(val){
+            this.fullname=this.firstname + ' '+val
+        }
+    }
+})
+
+
+var app3=new Vue({
+    el:"#app3",
+    data:{
+        firstname:'li',
+        lastname:'qinghua'
+    },
+    computed:{
+        fullname:function(){
+            return this.firstname+' '+this.lastname
+        }
+    }
+})
+
+var app4=new Vue({
+    el:'#app4',
+    data:{
+        firstname:'li',
+        lastname:'qinghua'
+    },
+    computed:{
+        fullname:{
+            get:function () {
+                return this.firstname + '' +this.lastname
+            },
+            set:function(newValue){
+                var names=newValue.split(' ')
+                this.firstname=names[0]
+                this.lastname=names[1]
+                console.log(newValue)
+            }
+        }
+    }
+
+})
+
+    setTimeout(function(){
+        app1.message="我爱中国国民党"
+    },2000)
+
+
+</script>
+</body>
+</html>

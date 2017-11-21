@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watch</title>
+</head>
+<body>
+<div id="watch">
+
+    <p>
+        test api:
+        <input v-model="apiurl">
+
+    </p>
+    <p>api result:{{result}}</p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+<script>
+    var watch=new Vue({
+        el:"#watch",
+        data:{
+            apiurl:'',
+            result:'您还没有输入apiurl'
+        },
+        watch:{
+            apiurl:function(newApiurl){
+                this.result='正在输入...'
+                this.getResult()
+            }
+        },
+        methods:{
+            getResult:_.debounce(function(){
+                this.result='正在查询...'
+                var vm=this
+                axios.get(this.apiurl)
+                    .then(function(res){
+                       vm.result=res.data.result.list
+                    })
+                    .catch(function(err){
+                        vm.result=err
+                    })
+            },500)
+        }
+
+    })
+</script>
+</body>
+</html>

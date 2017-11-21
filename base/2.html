@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>first vue</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+<div id="app1">
+<span v-bind:title="message">
+鼠标在此停留几秒试试
+</span>
+</div>
+
+<div id="app2">
+    <p v-if="seem">
+        你能看能到吗
+    </p>
+</div>
+
+<div id="app3">
+    <ol>
+        <li v-for="todo in todos">
+            {{todo.text}}
+        </li>
+    </ol>
+
+</div>
+
+
+<div id="app4">
+    <p>{{message}}</p>
+    <button  v-on:click="reverseMessage">逆转消息</button>
+</div>
+
+<div id="app5">
+    <p>{{message}}</p>
+    <input type="text" v-model="message">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            message: 'fuck you'
+        }
+    })
+
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            message: '页面加载于' + new Date().toLocaleDateString()
+        }
+    })
+
+    var app2 = new Vue({
+        el: "#app2",
+        data: {
+            seem: true
+        }
+    })
+
+    var app3=new Vue({
+        el:"#app3",
+        data:{
+            todos:
+                [
+                    {text:'马克思'},
+                    {text:'列宁'},
+                    {text:'毛泽东'}
+                    ]
+            }
+
+    })
+
+    var app4=new Vue({
+        el:"#app4",
+        data:{
+            message:'this is a vue program!'
+        },
+        methods:{
+            reverseMessage:function(){
+                this.message=this.message.split('').reverse().join('')
+            }
+        }
+    })
+
+    var app5=new Vue({
+        el:"#app5",
+        data:{
+            message:'你好vue'
+        }
+    })
+
+    setTimeout(function () {
+        app.message = 'test'
+    }, 3000)
+
+    setTimeout(function () {
+        app2.seem = false
+    }, 2000)
+
+    setTimeout(function(){
+        app3.todos.push({text:"邓小平"})
+    },1000)
+</script>
+
+</body>
+</html>
