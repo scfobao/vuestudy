@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Props</title>
+</head>
+<body>
+<div id="app1">
+    <the-props-test :my-message="message"></the-props-test>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    Vue.component('the-props-test',{
+        props:['myMessage'],
+        template:'<span>{{myMessage}}</span>'
+    })
+
+    var app1=new Vue({
+        el:"#app1",
+        data:{
+            message:'the world is fuck'
+        },
+        methods:{
+            say:function(){
+                alert('you click')
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

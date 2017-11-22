@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data must be a function</title>
+</head>
+<body>
+<div id="app1">
+    <sample-counter></sample-counter>
+    <sample-counter></sample-counter>
+    <sample-counter></sample-counter>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    //var data={counter:0}
+    Vue.component('sample-counter', {
+        template:'<button v-on:click="counter+=1">{{counter}}</button>',
+           data:function () {
+               return  {
+                   counter: 0
+               }
+           }
+    })
+    var app1=new Vue({
+        el:"#app1"
+    })
+</script>
+
+</body>
+</html>

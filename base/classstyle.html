@@ -17,7 +17,9 @@
     <p v-bind:class="objectClass">活动启动状态</p>
 </div>
 <div id="app3">
-
+   <p v-bind:class="[activeClass,errorClass]">这是一个测试</p>
+   <p v-bind:class="[isActive ? activeClass:'',errorClass]">这是又一个测试</p>
+   <p v-bind:class="[{active:isActive},errorClass]">这是双一个测试</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -39,9 +41,18 @@
         }
     })
 
-    /*setInterval(function(){
+    var app3=new Vue({
+        el:"#app3",
+        data:{
+            activeClass:'active',
+            errorClass:'text-danger',
+            isActive:true
+        }
+    })
+
+    setInterval(function(){
        app1.isActive=app1.isActive?false:true
-    },500)*/
+    },500)
 </script>
 </body>
 </html>
