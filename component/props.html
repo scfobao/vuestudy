@@ -6,27 +6,37 @@
 </head>
 <body>
 <div id="app1">
-    <the-props-test :my-message="message"></the-props-test>
+    <input v-model="pMessage">
+    <br>
+    <the-props-test :my-message="pMessage"></the-props-test>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-    Vue.component('the-props-test',{
-        props:['myMessage'],
-        template:'<span>{{myMessage}}</span>'
-    })
-
-    var app1=new Vue({
-        el:"#app1",
-        data:{
-            message:'the world is fuck'
-        },
-        methods:{
-            say:function(){
-                alert('you click')
+    Vue.component('the-props-test', {
+        props: ['myMessage'],
+        template: '<span @click="say(myMessage)">{{myMessage}}</span>',
+        methods: {
+            say: function (str) {
+                alert('you click' + str)
             }
         }
     })
+
+    var app1 = new Vue({
+        el: "#app1",
+        data: {
+            pMessage: 'the world is fuck'
+        }
+    })
+
+/*    setTimeout(function () {
+        app1.message = Math.random()
+    }, 300)
+
+    setInterval(function () {
+        app1.message = Math.random()
+    }, 800)*/
 
 </script>
 </body>

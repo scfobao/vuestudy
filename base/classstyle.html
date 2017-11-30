@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Class & Style</title>
     <style>
-        .active {color:greenyellow;font-size: 50px}
+        .active {color:greenyellow;font-size: 17px}
         .text-danger {color:red}
     </style>
 </head>
 <body>
 <div id="app1">
-    <p v-bind:class="{active:isActive}">你们看到我了吗</p>
+    <p v-bind:class="{active:isActive}">我是李粤，看到我了吗</p>
 </div>
 
 <div id="app2">
@@ -52,7 +52,7 @@
 
     setInterval(function(){
        app1.isActive=app1.isActive?false:true
-    },500)
+    },300)
 </script>
 </body>
 </html>
