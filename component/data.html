@@ -13,12 +13,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-    //var data={counter:0}
+    var data={counter:0}
     Vue.component('sample-counter', {
         template:'<button v-on:click="counter+=1">{{counter}}</button>',
            data:function () {
                return  {
-                   counter: 0
+                   counter:0
                }
            }
     })
