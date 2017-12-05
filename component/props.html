@@ -6,7 +6,13 @@
 </head>
 <body>
 <div id="app1">
+    <input type="text" v-model="message">
     <the-props-test :my-message="message"></the-props-test>
+
+</div>
+
+<div id="app2">
+    <the-props-test1 :counter="1"></the-props-test1>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -16,16 +22,24 @@
         template:'<span>{{myMessage}}</span>'
     })
 
+    Vue.component('the-props-test1',{
+        props:['']
+    })
+
     var app1=new Vue({
         el:"#app1",
         data:{
-            message:'the world is fuck'
+            message:''
         },
         methods:{
             say:function(){
                 alert('you click')
             }
         }
+    })
+
+    var app2=new Vue({
+        el:"#app2",
     })
 
 </script>
